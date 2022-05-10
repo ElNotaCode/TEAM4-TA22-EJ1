@@ -16,7 +16,7 @@ public class viewCreateClient extends JFrame {
 	private JTextField tfNombre;
 	private JTextField tfApellido;
 	private JTextField tfDireccion;
-	private JTextField textField_3;
+	private JTextField tfDni;
 
 	/**
 	 * Launch the application.
@@ -64,10 +64,10 @@ public class viewCreateClient extends JFrame {
 		contentPane.add(tfDireccion);
 		tfDireccion.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(125, 129, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		tfDni = new JTextField();
+		tfDni.setBounds(125, 129, 86, 20);
+		contentPane.add(tfDni);
+		tfDni.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(20, 39, 95, 14);
