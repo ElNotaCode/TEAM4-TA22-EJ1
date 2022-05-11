@@ -1,10 +1,10 @@
-package models;
+package models.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import utils.ConnectionDB;
+import models.conexion.ConnectionDB;
 
 public class VideoModel {
 	
@@ -12,27 +12,7 @@ public class VideoModel {
 
 	//modificar todo
 	
-	//crear tabla cliente
-	public void createTabe() {
-		try {
-			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE clientevideo;";
-			Statement stdb = conexion.createStatement();
-			stdb.executeUpdate(Querydb);
-			String Query = "CREATE TABLE videos(id int not null AUTO_INCREMENT PRIMARY KEY,title varchar(100) DEFAULT NULL,director varchar(250), cli_id int DEFAULT NULL,CONSTRAINT videos_fk FOREIGN KEY (cli_id) REFERENCES cliente(id));";
-			System.out.println(Query);
-			Statement st = conexion.createStatement();
-			st.executeUpdate(Query);
-
-			conexion.close();
-			System.out.println("Tabla cliente creada con exito!");
-		} catch (SQLException e) {
-			// TODO: handle exception
-			System.out.println("No se a podido crear la tabla cliente");
-			System.out.println(e);
-		}
-	}
-
+	
 	// insert
 
 	public void createInsert(String db, String tabla, String title, String director, int cli_id) {
