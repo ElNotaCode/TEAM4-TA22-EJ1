@@ -1,20 +1,14 @@
 package com.TEAM4_C4_UD22.ej1;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
+class AppTest {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
 }
