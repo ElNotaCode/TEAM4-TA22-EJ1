@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import models.conexion.ConnectionDB;
+import models.dto.ClienteDto;
+import models.dto.VideoDto;
 
 public class VideoModel {
 	
@@ -15,14 +17,14 @@ public class VideoModel {
 	
 	// insert
 
-	public void createInsert(String db, String tabla, String title, String director, int cli_id) {
+	public void createInsert(VideoDto video) {
 		try {
 			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE " + db + ";";
+			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "INSERT INTO " + tabla + "(nombre,apellido,direccion,dni,fecha)VALUES('" + title + "','"
-					+ director + "','" + cli_id + ";'";
+			String Query = "INSERT INTO video (nombre,apellido,direccion,dni,fecha)VALUES('" + video.getTitle() + "','"
+					+ video.getDirector() + "','" + video.getCli_id() + ";'";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
@@ -37,13 +39,13 @@ public class VideoModel {
 
 	// update
 		
-	public void createUpdate(String db, String tabla, String title, String director,  int cli_id,int id) {
+	public void createUpdate(VideoDto video,int id) {
 		try {
 			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE " + db + ";";
+			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "UPDATE " + tabla + "SET TITLE='"+title+"',DIRECTOR='"+director+"',CLI_ID='"+cli_id+"' WHERE ID="+id+"";
+			String Query = "UPDATE video SET TITLE='"+video.getTitle()+"',DIRECTOR='"+video.getDirector()+"',CLI_ID='"+video.getCli_id()+"' WHERE ID="+id+"";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
@@ -55,16 +57,73 @@ public class VideoModel {
 			System.out.println(e);
 		}
 	}
+	
+	
+	
+
+	// Mostrar solo 1
+	
+		public VideoDto selectOne(int id) {
+			VideoDto video = new VideoDto();
+
+			try {
+				Connection conexion = connexionMSQ.conexion();
+				String Querydb = "USE clientevideo;";
+				Statement stdb = conexion.createStatement();
+				stdb.executeUpdate(Querydb);
+				String Query = "SELECT *  FROM cliente WHERE id ="+id+";";;
+				System.out.println(Query);
+				Statement st = conexion.createStatement();
+				java.sql.ResultSet resultSet;
+				resultSet  = st.executeQuery(Query);
+				
+				
+				while (resultSet.next())
+			      {
+					System.out.println("ID:"+resultSet.getString("id") + " "
+							+ "Title: " + resultSet.getString("title")+ " "
+							+ "Apellido: " + resultSet.getString("apellido")+ " "
+							+ "Fecha: " + resultSet.getString("fecha")+ " "
+							);
+					
+					//Necesto recibir el resultado de la consulta.
+				
+					String titleSelect = resultSet.getString("title");
+					String directorSelect = resultSet.getString("apellido");
+					int cli_idSelect = Integer.parseInt(resultSet.getString("fecha"));
+					video = new VideoDto(titleSelect,directorSelect,cli_idSelect);
+
+			      }
+				
+				
+			
+				conexion.close();
+				System.out.println("Select Correcto!");
+				return video;
+
+			} catch (SQLException e) {
+				// TODO: handle exception
+				System.out.println("Select Incorrecto!");
+				System.out.println(e);
+				return null;
+
+			}
+		}
+	
+	
+	
+	
+	
 
 	// Mostrar tabla
 	
-	public void selectDB(String db, String tabla) {
+	public void selectDB() {
 		try {
 			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE "+db+";";
+			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "SELECT * FROM "+tabla+";";
+			String Query = "SELECT * FROM video;";
 			System.out.println(Query);
 			Statement st = conexion.createStatement();
 			java.sql.ResultSet resultSet;
@@ -96,13 +155,13 @@ public class VideoModel {
 	
 	// Borrar solo 1
 	
-		public void createdeleteone(String db, String tabla,int id) {
+		public void createdeleteone(int id) {
 			try {
 				Connection conexion = connexionMSQ.conexion();
-				String Querydb = "USE " + db + ";";
+				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
-				String Query = "DELETE FROM "+tabla+" WHERE id ="+id+";";
+				String Query = "DELETE FROM video WHERE id ="+id+";";
 				Statement st = conexion.createStatement();
 				st.executeUpdate(Query);
 
@@ -118,21 +177,6 @@ public class VideoModel {
 
 	
 	
-	// Borrar toda la BD
 	
-	public void deletetDB(String db) {
-		try {
-			Connection conexion = connexionMSQ.conexion();
-			String Query = "DROP DATABASE clientevideo;";
-			System.out.println(Query);
-			Statement st = conexion.createStatement();
-			conexion.close();
-			System.out.println("Delete Correcto!");
-		} catch (SQLException e) {
-			// TODO: handle exception
-			System.out.println("Delete Incorrecto!");
-			System.out.println(e);
-		}
-	}
 
 }
