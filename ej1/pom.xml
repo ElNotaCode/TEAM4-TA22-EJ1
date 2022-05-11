@@ -9,8 +9,6 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <name>ej1</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,8 +16,13 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+<<<<<<< HEAD
+<dependencies>
+  	<!--  JUnit 5 -->
+=======
   <dependencies>
 <!--  JUnit 5 -->
+>>>>>>> controlador
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
@@ -34,6 +37,7 @@
     </dependency>
   </dependencies>
 
+      
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
