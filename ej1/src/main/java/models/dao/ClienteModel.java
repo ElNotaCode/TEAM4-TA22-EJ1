@@ -44,13 +44,13 @@ public class ClienteModel {
 	
 	// update
 		
-	public void createUpdate(int id ,ClienteDto cliente) {
+	public void createUpdate(ClienteDto cliente) {
 		try {
 			Connection conexion = connexionMSQ.conexion();
 			String Querydb = "USE clientevieo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "UPDATE cliente SET NOMBRE='"+cliente.getNombre()+"',APELLIDO='"+cliente.getApellido()+"',DIRECCION='"+cliente.getDireccion()+"', DNI ="+cliente.getDni()+" , FECHA="+cliente.getFecha()+" WHERE ID="+id+"";
+			String Query = "UPDATE cliente SET NOMBRE='"+cliente.getNombre()+"',APELLIDO='"+cliente.getApellido()+"',DIRECCION='"+cliente.getDireccion()+"', DNI ="+cliente.getDni()+" , FECHA="+cliente.getFecha()+" WHERE ID="+cliente.getDni()+"";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
@@ -119,13 +119,13 @@ public class ClienteModel {
 	
 	// Mostrar tabla
 	
-	public void selectDB(String db, String tabla) {
+	public void selectDB() {
 		try {
 			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE "+db+";";
+			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "SELECT * FROM "+tabla+";";
+			String Query = "SELECT * FROM cliente";
 			System.out.println(Query);
 			Statement st = conexion.createStatement();
 			java.sql.ResultSet resultSet;

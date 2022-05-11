@@ -6,6 +6,12 @@ public class VideoDto {
 	 private String director;
 	 private int cli_id;
 	 
+	 
+	 
+	public VideoDto() {
+		super();
+	}
+
 	public VideoDto(String title, String director, int cli_id) {
 		super();
 		this.title = title;
