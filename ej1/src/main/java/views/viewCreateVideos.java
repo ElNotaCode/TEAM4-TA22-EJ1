@@ -12,25 +12,9 @@ import javax.swing.JTextField;
 public class viewCreateVideos extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfTitle;
-	private JTextField tfDirector;
-	private JTextField tfClientId;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					viewCreateVideos frame = new viewCreateVideos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JTextField tfTitle = new JTextField();
+	public JTextField tfDirector = new JTextField();
+	public JTextField tfClientId = new JTextField();
 
 	/**
 	 * Create the frame.
@@ -51,7 +35,7 @@ public class viewCreateVideos extends JFrame {
 		lblTitle.setBounds(20, 39, 46, 14);
 		contentPane.add(lblTitle);
 		
-		tfTitle = new JTextField();
+		
 		tfTitle.setBounds(94, 36, 86, 20);
 		contentPane.add(tfTitle);
 		tfTitle.setColumns(10);
@@ -60,7 +44,7 @@ public class viewCreateVideos extends JFrame {
 		lblDirector.setBounds(20, 79, 46, 14);
 		contentPane.add(lblDirector);
 		
-		tfDirector = new JTextField();
+		
 		tfDirector.setColumns(10);
 		tfDirector.setBounds(94, 76, 86, 20);
 		contentPane.add(tfDirector);
@@ -69,7 +53,7 @@ public class viewCreateVideos extends JFrame {
 		lblClientId.setBounds(20, 123, 46, 14);
 		contentPane.add(lblClientId);
 		
-		tfClientId = new JTextField();
+		
 		tfClientId.setColumns(10);
 		tfClientId.setBounds(94, 120, 86, 20);
 		contentPane.add(tfClientId);

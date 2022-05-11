@@ -12,23 +12,8 @@ import javax.swing.JButton;
 public class viewTable extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					viewTable frame = new viewTable();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JTable table;
+	public JButton btnSalir = new JButton("Salir");
 
 	/**
 	 * Create the frame.
@@ -45,7 +30,7 @@ public class viewTable extends JFrame {
 		table.setBounds(10, 11, 414, 205);
 		contentPane.add(table);
 		
-		JButton btnSalir = new JButton("Salir");
+		
 		btnSalir.setBounds(10, 227, 89, 23);
 		contentPane.add(btnSalir);
 	}

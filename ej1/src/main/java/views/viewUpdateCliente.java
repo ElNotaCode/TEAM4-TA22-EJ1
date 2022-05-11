@@ -13,24 +13,13 @@ import javax.swing.border.EmptyBorder;
 public class viewUpdateCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfIdCliente;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					viewUpdateCliente frame = new viewUpdateCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	public JTextField tfIdCliente = new JTextField();
+	public JTextField tfNombre = new JTextField();
+	public JTextField tfApellido = new JTextField();
+	public JTextField tfDireccion = new JTextField();
+	public JTextField tfDni = new JTextField();
+	public JButton btnEnviar = new JButton("Enviar");
+	
 	/**
 	 * Create the frame.
 	 */
@@ -46,22 +35,22 @@ public class viewUpdateCliente extends JFrame {
 		lblTitulo.setBounds(10, 11, 72, 14);
 		contentPane.add(lblTitulo);
 		
-		JTextField tfNombre = new JTextField();
+		
 		tfNombre.setBounds(125, 67, 86, 20);
 		contentPane.add(tfNombre);
 		tfNombre.setColumns(10);
 		
-		JTextField tfApellido = new JTextField();
+		
 		tfApellido.setBounds(125, 98, 86, 20);
 		contentPane.add(tfApellido);
 		tfApellido.setColumns(10);
 		
-		JTextField tfDireccion = new JTextField();
+		
 		tfDireccion.setBounds(125, 129, 86, 20);
 		contentPane.add(tfDireccion);
 		tfDireccion.setColumns(10);
 		
-		JTextField tfDni = new JTextField();
+		
 		tfDni.setBounds(125, 160, 86, 20);
 		contentPane.add(tfDni);
 		tfDni.setColumns(10);
@@ -82,11 +71,11 @@ public class viewUpdateCliente extends JFrame {
 		lblDni.setBounds(20, 163, 95, 14);
 		contentPane.add(lblDni);
 		
-		JButton btnEnviar = new JButton("Enviar");
+		
 		btnEnviar.setBounds(125, 191, 86, 23);
 		contentPane.add(btnEnviar);
 		
-		tfIdCliente = new JTextField();
+		
 		tfIdCliente.setColumns(10);
 		tfIdCliente.setBounds(125, 36, 86, 20);
 		contentPane.add(tfIdCliente);
