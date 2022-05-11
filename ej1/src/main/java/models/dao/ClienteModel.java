@@ -1,71 +1,30 @@
-package models;
+package models.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import utils.ConnectionDB;
+import models.conexion.ConnectionDB;
+import models.dto.ClienteDto;
 
 public class ClienteModel {
 
 	ConnectionDB connexionMSQ = new ConnectionDB();
 
-	// crear db
 
-	public void createBD() {
-		try {
-			Connection conexion = connexionMSQ.conexion();
-			String QueryDrop = "DROP DATABASE IF EXISTS clientevideo;";
-			String Query = "CREATE DATABASE clientevideo;";
-			Statement st = conexion.createStatement();
-			st.executeUpdate(QueryDrop);
-			st.executeUpdate(Query);
-			conexion.close();
-			System.out.println("Se a creado correctamente la BD clientevideo");
-		} catch (SQLException e) {
-			// TODO: handle exception
-			System.out.println(e);
-			System.out.println("No se a podido crear la bd clientevideo");
+	// insert
 
-		}
-
-	}
-	
-	//crear tabla cliente
-
-	public void createTabe() {
+	public void createInsert(ClienteDto cliente) {
 		try {
 			Connection conexion = connexionMSQ.conexion();
 			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "CREATE TABLE cliente(id int not null AUTO_INCREMENT PRIMARY KEY,nombre varchar(100) DEFAULT NULL,apellido varchar(250),direccion varchar(250) DEFAULT NULL, dni int DEFAULT NULL,fecha date DEFAULT NULL);";
-			System.out.println(Query);
-			Statement st = conexion.createStatement();
-			st.executeUpdate(Query);
-
-			conexion.close();
-			System.out.println("Tabla cliente creada con exito!");
-		} catch (SQLException e) {
-			// TODO: handle exception
-			System.out.println("No se a podido crear la tabla cliente");
-			System.out.println(e);
-		}
-	}
-
-	// insert
-
-	public void createInsert(String db, String tabla, String nombre, String apellido, String direccion, int dni,
-			String fecha) {
-		try {
-			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE " + db + ";";
-			Statement stdb = conexion.createStatement();
-			stdb.executeUpdate(Querydb);
-			String Query = "INSERT INTO " + tabla + "(nombre,apellido,direccion,dni,fecha)VALUES('" + nombre + "','"
-					+ apellido + "','" + direccion + "'," + dni + ",'" + fecha + "'";
+			String Query = "INSERT INTO cliente (nombre,apellido,direccion,dni,fecha)VALUES('" + cliente.getNombre() + "','"
+					+ cliente.getApellido() + "','" + cliente.getDireccion() + "'," + cliente.getDni() + ",'" + cliente.getFecha() + "'";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
@@ -78,16 +37,20 @@ public class ClienteModel {
 		}
 	}
 
+	
+	//read
+	
+	
+	
 	// update
 		
-	public void createUpdate(String db, String tabla, String nombre, String apellido, String direccion, int dni,
-			String fecha,int id) {
+	public void createUpdate(int id ,ClienteDto cliente) {
 		try {
 			Connection conexion = connexionMSQ.conexion();
-			String Querydb = "USE " + db + ";";
+			String Querydb = "USE clientevieo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "UPDATE " + tabla + "SET NOMBRE='"+nombre+"',APELLIDO='"+apellido+"',DIRECCION='"+direccion+"', DNI ="+dni+" , FECHA='"+fecha+"'WHERE ID="+id+"";
+			String Query = "UPDATE cliente SET NOMBRE='"+cliente.getNombre()+"',APELLIDO='"+cliente.getApellido()+"',DIRECCION='"+cliente.getDireccion()+"', DNI ="+cliente.getDni()+" , FECHA="+cliente.getFecha()+" WHERE ID="+id+"";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
@@ -100,6 +63,60 @@ public class ClienteModel {
 		}
 	}
 
+	// Mostrar solo 1
+	
+		public ClienteDto selectOne(int id) {
+			ClienteDto cliente = new ClienteDto();
+
+			try {
+				Connection conexion = connexionMSQ.conexion();
+				String Querydb = "USE clientevideo;";
+				Statement stdb = conexion.createStatement();
+				stdb.executeUpdate(Querydb);
+				String Query = "SELECT *  FROM cliente WHERE id ="+id+";";;
+				System.out.println(Query);
+				Statement st = conexion.createStatement();
+				java.sql.ResultSet resultSet;
+				resultSet  = st.executeQuery(Query);
+				
+				
+				while (resultSet.next())
+			      {
+					System.out.println("ID:"+resultSet.getString("id") + " "
+							+ "Nombre: " + resultSet.getString("nombre")+ " "
+							+ "Apellido: " + resultSet.getString("apellido")+ " "
+							+ "Direccion: " + resultSet.getString("direccion")+ " "
+							+ "DNI: " + resultSet.getString("dni")+ " "
+							+ "Fecha: " + resultSet.getString("fecha")+ " "
+							);
+					
+					//Necesto recibir el resultado de la consulta.
+				
+					String nomSelect = resultSet.getString("nombre");
+					String apellidoSelect = resultSet.getString("apellido");
+					String direccionSelect = resultSet.getString("direccion");
+					String dniSelect = resultSet.getString("dni");
+					int fechaSelect = Integer.parseInt(resultSet.getString("fecha"));
+
+					cliente = new ClienteDto(nomSelect,apellidoSelect,direccionSelect,dniSelect,fechaSelect);
+			      }
+				
+				
+			
+				conexion.close();
+				System.out.println("Select Correcto!");
+				return cliente;
+
+			} catch (SQLException e) {
+				// TODO: handle exception
+				System.out.println("Select Incorrecto!");
+				System.out.println(e);
+				return null;
+
+			}
+		}
+	
+	
 	// Mostrar tabla
 	
 	public void selectDB(String db, String tabla) {
@@ -141,13 +158,13 @@ public class ClienteModel {
 	
 	// Borrar solo 1
 	
-		public void createdeleteone(String db, String tabla,int id) {
+		public void deleteOne(int id) {
 			try {
 				Connection conexion = connexionMSQ.conexion();
-				String Querydb = "USE " + db + ";";
+				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
-				String Query = "DELETE FROM "+tabla+" WHERE id ="+id+";";
+				String Query = "DELETE FROM cliente WHERE id ="+id+";";
 				Statement st = conexion.createStatement();
 				st.executeUpdate(Query);
 
@@ -163,22 +180,7 @@ public class ClienteModel {
 
 	
 	
-	// Borrar toda la BD
 	
-	public void deletetDB(String db) {
-		try {
-			Connection conexion = connexionMSQ.conexion();
-			String Query = "DROP DATABASE clientevideo;";
-			System.out.println(Query);
-			Statement st = conexion.createStatement();
-			conexion.close();
-			System.out.println("Delete Correcto!");
-		} catch (SQLException e) {
-			// TODO: handle exception
-			System.out.println("Delete Incorrecto!");
-			System.out.println(e);
-		}
-	}
 	
 	
 	

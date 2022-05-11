@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import models.ClienteModel;
-import utils.ConnectionDB;
+import models.conexion.ConnectionDB;
+import models.dao.ClienteModel;
 
 class CrudTest {
 	
