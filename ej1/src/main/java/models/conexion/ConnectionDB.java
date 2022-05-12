@@ -24,7 +24,7 @@ public class ConnectionDB {
 				
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					conexion = DriverManager.getConnection("jdbc:mysql://" + ip3 + ":3306/"+ bd +"?useTimezone=true&serverTimezone=UTC", userB, passwordB);
+					conexion = DriverManager.getConnection("jdbc:mysql://" + ip2 + ":3306/"+ bd +"?useTimezone=true&serverTimezone=UTC", user, password);
 					System.out.println("Conexion establecida.");
 				
 					return conexion;

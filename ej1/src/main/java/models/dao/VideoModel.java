@@ -23,11 +23,13 @@ public class VideoModel {
 			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "INSERT INTO video (nombre,apellido,direccion,dni,fecha)VALUES('" + video.getTitle() + "','"
-					+ video.getDirector() + "','" + video.getCli_id() + ";'";
+			String Querys = "INSERT INTO videos (title,director,cli_id)VALUES('" + video.getTitle() + "','"
+					+ video.getDirector() + "'," + video.getCli_id() + ");";
+			System.out.println(Querys);
+
 			Statement st = conexion.createStatement();
-			st.executeUpdate(Query);
-			System.out.println(Querydb);
+
+			st.executeUpdate(Querys);
 			conexion.close();
 			System.out.println("Inserts  creados  con exito!");
 		} catch (SQLException e) {
@@ -45,10 +47,11 @@ public class VideoModel {
 			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "UPDATE video SET TITLE='"+video.getTitle()+"',DIRECTOR='"+video.getDirector()+"',CLI_ID='"+video.getCli_id()+"' WHERE ID="+id+"";
+			String Query = "UPDATE videos SET TITLE='"+video.getTitle()+"',DIRECTOR='"+video.getDirector()+"',CLI_ID='"+video.getCli_id()+"' WHERE ID="+id+"";
 			Statement st = conexion.createStatement();
-			st.executeUpdate(Query);
 			System.out.println(Querydb);
+
+			st.executeUpdate(Query);
 
 			conexion.close();
 			System.out.println("Inserts  creados  con exito!");
@@ -72,32 +75,29 @@ public class VideoModel {
 				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
-				String Query = "SELECT *  FROM cliente WHERE id ="+id+";";;
+				String Query = "SELECT *  FROM videos WHERE id ="+id+";";;
 				System.out.println(Query);
 				Statement st = conexion.createStatement();
 				java.sql.ResultSet resultSet;
+				System.out.println(Querydb);
+
 				resultSet  = st.executeQuery(Query);
 				
 				
 				while (resultSet.next())
 			      {
-					System.out.println("ID:"+resultSet.getString("id") + " "
-							+ "Title: " + resultSet.getString("title")+ " "
-							+ "Apellido: " + resultSet.getString("apellido")+ " "
-							+ "Fecha: " + resultSet.getString("fecha")+ " "
-							);
+					
 					
 					//Necesto recibir el resultado de la consulta.
 				
 					String titleSelect = resultSet.getString("title");
-					String directorSelect = resultSet.getString("apellido");
-					int cli_idSelect = Integer.parseInt(resultSet.getString("fecha"));
+					String directorSelect = resultSet.getString("director");
+					int cli_idSelect = Integer.parseInt(resultSet.getString("cli_id"));
 					video = new VideoDto(titleSelect,directorSelect,cli_idSelect);
 
 			      }
 				
 				
-				System.out.println(Querydb);
 				conexion.close();
 				System.out.println("Select Correcto!");
 				return video;
@@ -162,15 +162,15 @@ public class VideoModel {
 				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
-				String Query = "DELETE FROM video WHERE id ="+id+";";
+				String Query = "DELETE FROM videos WHERE id ="+id+";";
 				Statement st = conexion.createStatement();
+				System.out.println(Query);
 				st.executeUpdate(Query);
-				System.out.println(Querydb);
 				conexion.close();
-				System.out.println("Inserts  creados  con exito!");
+				System.out.println("se a podido borrar!");
 			} catch (SQLException e) {
 				// TODO: handle exception
-				System.out.println("No se a podido crear los inserts en la tabla ");
+				System.out.println("No se a podido borrar! ");
 				System.out.println(e);
 			}
 		}

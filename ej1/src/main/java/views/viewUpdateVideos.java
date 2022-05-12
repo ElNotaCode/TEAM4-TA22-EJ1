@@ -13,12 +13,18 @@ import javax.swing.JButton;
 public class viewUpdateVideos extends JFrame {
 
 	private JPanel contentPane;
-	public JTextField tfVideoId = new JTextField();
 	public JTextField tfTitle = new JTextField();
 	public JTextField tfDirector = new JTextField();
 	public JTextField tfClientId = new JTextField();
 	public JButton btnEnviar = new JButton("Enviar");
+	public JTextField 	textEditarId = new JTextField();
 
+
+	
+	public JButton btnEditarVideo = new JButton("Buscar");
+
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -44,7 +50,7 @@ public class viewUpdateVideos extends JFrame {
 		tfTitle.setColumns(10);
 		
 		JLabel lblDirector = new JLabel("Director");
-		lblDirector.setBounds(10, 120, 46, 14);
+		lblDirector.setBounds(10, 120, 65, 14);
 		contentPane.add(lblDirector);
 		
 		
@@ -53,25 +59,27 @@ public class viewUpdateVideos extends JFrame {
 		contentPane.add(tfDirector);
 		
 		JLabel lblClientId = new JLabel("Client Id");
-		lblClientId.setBounds(10, 164, 46, 14);
+		lblClientId.setBounds(10, 164, 65, 14);
 		contentPane.add(lblClientId);
 		
 		tfClientId.setColumns(10);
 		tfClientId.setBounds(84, 161, 86, 20);
 		contentPane.add(tfClientId);
 		
-		JLabel lblVideosId = new JLabel("Title");
-		lblVideosId.setBounds(10, 36, 46, 14);
-		contentPane.add(lblVideosId);
-		
-		
-		tfVideoId.setColumns(10);
-		tfVideoId.setBounds(84, 33, 86, 20);
-		contentPane.add(tfVideoId);
-		
 		
 		btnEnviar.setBounds(85, 191, 85, 21);
 		contentPane.add(btnEnviar);
+		
+		textEditarId.setColumns(10);
+		textEditarId.setBounds(291, 161, 86, 20);
+		contentPane.add(textEditarId);
+		
+		btnEditarVideo.setBounds(291, 187, 85, 21);
+		contentPane.add(btnEditarVideo);
+		
+		JLabel lblId = new JLabel("ID");
+		lblId.setBounds(312, 142, 65, 14);
+		contentPane.add(lblId);
 	}
 
 }

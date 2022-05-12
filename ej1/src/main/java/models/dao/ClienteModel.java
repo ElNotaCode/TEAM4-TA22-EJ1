@@ -46,13 +46,14 @@ public class ClienteModel {
 	public void createUpdate(ClienteDto cliente) {
 		try {
 			Connection conexion = connexionMSQ.crearConexion();
-			String Querydb = "USE clientevieo;";
+			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
-			String Query = "UPDATE cliente SET NOMBRE='"+cliente.getNombre()+"',APELLIDO='"+cliente.getApellido()+"',DIRECCION='"+cliente.getDireccion()+"', DNI ="+cliente.getDni()+" , FECHA="+cliente.getFecha()+" WHERE ID="+cliente.getDni()+"";
+			String Query = "UPDATE cliente SET NOMBRE ='"+cliente.getNombre()+"',APELLIDO='"+cliente.getApellido()+"',DIRECCION='"+cliente.getDireccion()+"', DNI ="+cliente.getDni()+" , FECHA="+cliente.getFecha()+" WHERE dni="+cliente.getDni()+"";
+			System.out.println(Query);
+
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
-			System.out.println(Query);
 			
 			conexion.close();
 			System.out.println("Inserts  creados  con exito!");

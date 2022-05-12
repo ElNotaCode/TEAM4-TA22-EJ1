@@ -13,13 +13,16 @@ import javax.swing.border.EmptyBorder;
 public class viewUpdateCliente extends JFrame {
 
 	private JPanel contentPane;
-	public JTextField tfIdCliente = new JTextField();
 	public JTextField tfNombre = new JTextField();
 	public JTextField tfApellido = new JTextField();
 	public JTextField tfDireccion = new JTextField();
 	public JTextField tfDni = new JTextField();
 	public JButton btnEnviar = new JButton("Enviar");
-	
+	public JTextField 	buscarClienteDni = new JTextField();
+
+	public JButton btnEditar = new JButton("Buscar");
+
+
 	/**
 	 * Create the frame.
 	 */
@@ -75,16 +78,17 @@ public class viewUpdateCliente extends JFrame {
 		btnEnviar.setBounds(125, 191, 86, 23);
 		contentPane.add(btnEnviar);
 		
+		buscarClienteDni.setColumns(10);
+		buscarClienteDni.setBounds(289, 157, 86, 20);
+		contentPane.add(buscarClienteDni);
 		
-		tfIdCliente.setColumns(10);
-		tfIdCliente.setBounds(125, 36, 86, 20);
-		contentPane.add(tfIdCliente);
+		btnEditar.setBounds(289, 188, 86, 23);
+		contentPane.add(btnEditar);
 		
-		JLabel lblIdCliente = new JLabel("Id Cliente");
-		lblIdCliente.setBounds(20, 39, 95, 14);
-		contentPane.add(lblIdCliente);
+		JLabel lblDni_1 = new JLabel("DNI");
+		lblDni_1.setBounds(312, 132, 95, 14);
+		contentPane.add(lblDni_1);
 		
 		
 	}
-
 }

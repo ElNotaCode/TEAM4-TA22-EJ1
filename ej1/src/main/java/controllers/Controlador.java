@@ -53,7 +53,6 @@ public class Controlador implements ActionListener {
 		this.viewMain1.btnEditarCliente.addActionListener(this);
 		this.viewMain1.btnBorrarClientes.addActionListener(this);
 		this.viewMain1.btnCrearVideos.addActionListener(this);
-		this.viewMain1.btnVerVideos.addActionListener(this);
 		this.viewMain1.btnEditarVideos.addActionListener(this);
 		this.viewMain1.btnBorrarClientes.addActionListener(this);
 		
@@ -65,6 +64,16 @@ public class Controlador implements ActionListener {
 		this.viewUpdateVideos1.btnEnviar.addActionListener(this);
 		this.viewTable1.btnBuscarDNI.addActionListener(this);
 		this.viewTable1.btnBuscarID.addActionListener(this);
+		this.viewMain1.btnBorrarVideo.addActionListener(this);
+		
+		this.viewUpdateCliente1.btnEditar.addActionListener(this);
+		this.viewUpdateCliente1.buscarClienteDni.addActionListener(this);
+
+		this.viewUpdateVideos1.textEditarId.addActionListener(this);
+		this.viewUpdateVideos1.btnEditarVideo.addActionListener(this);
+		
+		
+
 		viewMain1.setVisible(true);
 	}
 
@@ -90,20 +99,20 @@ public class Controlador implements ActionListener {
 			
 		}
 		
+		//borrar clientes
 		if(evento.getSource()== this.viewMain1.btnBorrarClientes) {
 			clienteModel.deleteOne(viewMain1.tfBorrarCliente.getText());
 			viewMain1.tfBorrarCliente.setText("");
 		}
+		
+		
+		
 		
 		if(evento.getSource()== this.viewMain1.btnCrearVideos) {
 			viewCreateVideos1.setVisible(true);
 			viewMain1.setVisible(false);
 		}
 		
-		if(evento.getSource()== this.viewMain1.btnVerVideos) {
-			viewCreateVideos1.setVisible(true);
-			viewMain1.setVisible(false);
-		}
 		
 		if(evento.getSource()== this.viewMain1.btnEditarVideos) {
 			viewUpdateVideos1.setVisible(true);
@@ -111,6 +120,8 @@ public class Controlador implements ActionListener {
 		}
 		
 		if(evento.getSource()== this.viewMain1.btnBorrarVideo) {
+			videoModel.createdeleteone(Integer.parseInt(viewMain1.tfBorrarVideo.getText()));
+			viewMain1.tfBorrarVideo.setText("");
 			// de momento nada
 		}
 
@@ -126,22 +137,124 @@ public class Controlador implements ActionListener {
 			cliente += clienteDto.getDni();
 			viewTable1.table.setText(cliente);
 		}
+		
+		
+		// Botones mostrar Videos
+				if (evento.getSource() == this.viewTable1.btnBuscarID) {
+					viewTable1.setVisible(true);
+					viewMain1.setVisible(false);
+					VideoDto videoDto = videoModel.selectOne(Integer.parseInt(viewTable1.tfBuscarID.getText()));
+					String video = "";
+					video += videoDto.getTitle();
+					video += videoDto.getDirector();
+					video += videoDto.getCli_id();
+					viewTable1.table.setText(video);
+				}
 
+		
+		
+		//mostrar cliente
+		if (evento.getSource() == this.viewTable1.btnBuscarID) {
+			viewTable1.setVisible(true);
+			viewMain1.setVisible(false);
+			VideoDto videoDto = videoModel.selectOne(Integer.parseInt(viewTable1.tfBuscarID.getText()));
+		}
+		
+		//mostrar proyecto
 		if (evento.getSource() == this.viewTable1.btnBuscarID) {
 			viewTable1.setVisible(true);
 			viewMain1.setVisible(false);
 			VideoDto videoDto = videoModel.selectOne(Integer.parseInt(viewTable1.tfBuscarID.getText()));
 		}
 
-		// Boton de ViewCreateClient
+		//crear cliente
 		if(evento.getSource()== this.viewCreateClient1.btnEnviar) {
 			System.out.println("Intentando crear Cliente");
 			clienteDto = new ClienteDto(viewCreateClient1.tfNombre.getText(), viewCreateClient1.tfApellido.getText(), viewCreateClient1.tfDireccion.getText(), viewCreateClient1.tfDni.getText(), Integer.parseInt(viewCreateClient1.tfFecha.getText()));
 			clienteModel.createInsert(clienteDto);
-			System.out.println("Cliente Creado");
 		}
 		
-		//if(evento.getSource() == this.viewCreateClient1.btn)
+		//crear proyecto 
+		if(evento.getSource()== this.viewCreateVideos1.btnEnviar) {
+			System.out.println("Intentando crear Proyecto");
+			videoDto = new VideoDto(viewCreateVideos1.tfTitle.getText(), viewCreateVideos1.tfDirector.getText(), Integer.parseInt(viewCreateVideos1.tfClientId.getText()));
+			videoModel.createInsert(videoDto);
+		}
+		
+		
+		
+		//EditarCliente
+		if(evento.getSource()== this.viewUpdateCliente1.btnEditar) {
+			
+			String dnimandado = "";
+			String textNomApels = "";
+			
+			System.out.println("Dentro de editar");
+
+
+			ClienteDto cliente =  clienteModel.selectOne(viewUpdateCliente1.buscarClienteDni.getText());
+			
+			
+
+			viewUpdateCliente1.tfNombre.setText(cliente.getNombre());
+			viewUpdateCliente1.tfApellido.setText(cliente.getApellido());
+			viewUpdateCliente1.tfDireccion.setText(cliente.getDireccion());
+			viewUpdateCliente1.tfDni.setText(cliente.getDni());
+
+
+			
+		}
+		
+		
+		//Guardar el objeto editado
+		
+		if(evento.getSource()== this.viewUpdateCliente1.btnEnviar) {
+			
+			ClienteDto cliente = new ClienteDto(viewUpdateCliente1.tfNombre.getText(),viewUpdateCliente1.tfApellido.getText(),viewUpdateCliente1.tfDireccion.getText(),viewUpdateCliente1.tfDni.getText(),23);
+
+			clienteModel.createUpdate(cliente);
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		//EditarVideo
+		if(evento.getSource()== this.viewUpdateVideos1.btnEditarVideo) {
+	
+			
+			System.out.println("Dentro de editar");
+
+
+			VideoDto video =  videoModel.selectOne(Integer.parseInt(viewUpdateVideos1.textEditarId.getText()));
+			
+			
+
+			viewUpdateVideos1.tfTitle.setText(video.getTitle());
+			viewUpdateVideos1.tfDirector.setText(video.getDirector());
+			viewUpdateVideos1.tfClientId.setText(String.valueOf(video.getCli_id()));
+			
+			
+			
+		}
+		
+		
+		//Guardar el objeto editado
+		
+		
+		if(evento.getSource()== this.viewUpdateVideos1.btnEnviar) {
+			
+			VideoDto video = new VideoDto(viewUpdateVideos1.tfTitle.getText(),viewUpdateVideos1.tfDirector.getText(),Integer.parseInt(viewUpdateVideos1.tfClientId.getText()));
+
+			videoModel.createUpdate(video,Integer.parseInt(viewUpdateVideos1.textEditarId.getText()));
+			
+		}
+		
+
+		
 		
 	}
 

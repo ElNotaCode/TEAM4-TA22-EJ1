@@ -15,16 +15,15 @@ public class viewMain extends JFrame {
 	// Instanciamos en public los botones para poder acceder a ellos desde cualquier otra clase
 	public 	JButton btnCrearCliente = new JButton("Crear Cliente");
 	public JButton btnCrearVideos = new JButton("Crear Video");
-	public JButton btnVerClientes = new JButton("Ver Clientes");
-	public JButton btnVerVideos = new JButton("Ver Videos");
+	public JButton btnVerClientes = new JButton("Ver Clientes/ Videos");
 	public JButton btnEditarCliente = new JButton("Editar Cliente");
 	public JButton btnEditarVideos = new JButton("Editar Videos");
 	public JButton btnBorrarClientes = new JButton("Borrar Cliente");
 	public JButton btnBorrarVideo = new JButton("Borrar Video");
 	
 	private JPanel contentPane;
-	public final JTextField tfBorrarCliente = new JTextField();
-	public final JTextField tfBorrarVideo = new JTextField();
+	public  JTextField tfBorrarCliente = new JTextField();
+	public  JTextField tfBorrarVideo = new JTextField();
 	private final JLabel lblDNI = new JLabel("DNI:");
 	private final JLabel lblID = new JLabel("ID:");
 
@@ -56,12 +55,8 @@ public class viewMain extends JFrame {
 		contentPane.add(btnCrearVideos);
 		
 		
-		btnVerClientes.setBounds(20, 70, 110, 23);
+		btnVerClientes.setBounds(20, 70, 230, 23);
 		contentPane.add(btnVerClientes);
-		
-
-		btnVerVideos.setBounds(140, 70, 110, 23);
-		contentPane.add(btnVerVideos);
 		
 		
 		btnEditarCliente.setBounds(20, 104, 110, 23);

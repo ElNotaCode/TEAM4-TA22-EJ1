@@ -30,7 +30,7 @@ public class viewCreateVideos extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("Crear Video");
-		lblTitulo.setBounds(10, 11, 65, 14);
+		lblTitulo.setBounds(10, 11, 255, 14);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblTitle = new JLabel("Title");
