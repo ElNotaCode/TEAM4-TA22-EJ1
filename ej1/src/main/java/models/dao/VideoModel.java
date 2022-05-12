@@ -19,7 +19,7 @@ public class VideoModel {
 
 	public void createInsert(VideoDto video) {
 		try {
-			Connection conexion = connexionMSQ.conexion();
+			Connection conexion = connexionMSQ.crearConexion();
 			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
@@ -27,7 +27,7 @@ public class VideoModel {
 					+ video.getDirector() + "','" + video.getCli_id() + ";'";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
-
+			System.out.println(Querydb);
 			conexion.close();
 			System.out.println("Inserts  creados  con exito!");
 		} catch (SQLException e) {
@@ -41,13 +41,14 @@ public class VideoModel {
 		
 	public void createUpdate(VideoDto video,int id) {
 		try {
-			Connection conexion = connexionMSQ.conexion();
+			Connection conexion = connexionMSQ.crearConexion();
 			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 			String Query = "UPDATE video SET TITLE='"+video.getTitle()+"',DIRECTOR='"+video.getDirector()+"',CLI_ID='"+video.getCli_id()+"' WHERE ID="+id+"";
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
+			System.out.println(Querydb);
 
 			conexion.close();
 			System.out.println("Inserts  creados  con exito!");
@@ -67,7 +68,7 @@ public class VideoModel {
 			VideoDto video = new VideoDto();
 
 			try {
-				Connection conexion = connexionMSQ.conexion();
+				Connection conexion = connexionMSQ.crearConexion();
 				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
@@ -96,7 +97,7 @@ public class VideoModel {
 			      }
 				
 				
-			
+				System.out.println(Querydb);
 				conexion.close();
 				System.out.println("Select Correcto!");
 				return video;
@@ -119,7 +120,7 @@ public class VideoModel {
 	
 	public void selectDB() {
 		try {
-			Connection conexion = connexionMSQ.conexion();
+			Connection conexion = connexionMSQ.crearConexion();
 			String Querydb = "USE clientevideo;";
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
@@ -157,14 +158,14 @@ public class VideoModel {
 	
 		public void createdeleteone(int id) {
 			try {
-				Connection conexion = connexionMSQ.conexion();
+				Connection conexion = connexionMSQ.crearConexion();
 				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
 				String Query = "DELETE FROM video WHERE id ="+id+";";
 				Statement st = conexion.createStatement();
 				st.executeUpdate(Query);
-
+				System.out.println(Querydb);
 				conexion.close();
 				System.out.println("Inserts  creados  con exito!");
 			} catch (SQLException e) {
