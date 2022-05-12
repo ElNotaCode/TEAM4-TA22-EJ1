@@ -13,26 +13,12 @@ import javax.swing.JButton;
 public class viewCreateClient extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfNombre;
-	private JTextField tfApellido;
-	private JTextField tfDireccion;
-	private JTextField tfDni;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					viewCreateClient frame = new viewCreateClient();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JTextField tfNombre = new JTextField();
+	public JTextField tfApellido = new JTextField();
+	public JTextField tfDireccion = new JTextField();
+	public JTextField tfDni = new JTextField();
+	public JTextField tfFecha = new JTextField();
+	public 	JButton btnEnviar = new JButton("Enviar");
 
 	/**
 	 * Create the frame.
@@ -49,22 +35,22 @@ public class viewCreateClient extends JFrame {
 		lblTitulo.setBounds(10, 11, 72, 14);
 		contentPane.add(lblTitulo);
 		
-		tfNombre = new JTextField();
+		
 		tfNombre.setBounds(125, 36, 86, 20);
 		contentPane.add(tfNombre);
 		tfNombre.setColumns(10);
 		
-		tfApellido = new JTextField();
+		
 		tfApellido.setBounds(125, 67, 86, 20);
 		contentPane.add(tfApellido);
 		tfApellido.setColumns(10);
 		
-		tfDireccion = new JTextField();
+		
 		tfDireccion.setBounds(125, 98, 86, 20);
 		contentPane.add(tfDireccion);
 		tfDireccion.setColumns(10);
 		
-		tfDni = new JTextField();
+		
 		tfDni.setBounds(125, 129, 86, 20);
 		contentPane.add(tfDni);
 		tfDni.setColumns(10);
@@ -85,8 +71,17 @@ public class viewCreateClient extends JFrame {
 		lblDni.setBounds(20, 132, 95, 14);
 		contentPane.add(lblDni);
 		
-		JButton btnEnviar = new JButton("Enviar");
-		btnEnviar.setBounds(125, 160, 86, 23);
+
+		btnEnviar.setBounds(125, 189, 86, 23);
 		contentPane.add(btnEnviar);
+		
+		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha.setBounds(20, 165, 45, 13);
+		contentPane.add(lblFecha);
+		
+		
+		tfFecha.setBounds(125, 159, 86, 19);
+		contentPane.add(tfFecha);
+		tfFecha.setColumns(10);
 	}
 }
