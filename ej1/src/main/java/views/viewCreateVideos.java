@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class viewCreateVideos extends JFrame {
 
@@ -57,6 +58,9 @@ public class viewCreateVideos extends JFrame {
 		tfClientId.setColumns(10);
 		tfClientId.setBounds(94, 120, 86, 20);
 		contentPane.add(tfClientId);
+		
+		JButton btnEnviar = new JButton("Enviar");
+		btnEnviar.setBounds(94, 159, 85, 21);
+		contentPane.add(btnEnviar);
 	}
-
 }
