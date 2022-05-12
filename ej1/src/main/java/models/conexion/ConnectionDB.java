@@ -3,6 +3,7 @@ package models.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionDB {
 	
@@ -13,20 +14,26 @@ public class ConnectionDB {
 	private String password = "Reus_2022";
 	private String userB = "borja";
 	private String passwordB = "Facebook2!";
+	private Connection conexion = null;
+	private Statement statement = null;
+	private String bd = "clientevideo";
+
 	
-	public Connection conexion() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + ip3 + ":3306?useTimezone=true&serverTimezone=UTC", userB, passwordB);
-			System.out.println("Server Connected");
-			return conexion;
-		} catch (SQLException | ClassNotFoundException ex) {
-			System.out.println("No se puede conectar");
-			System.out.println(ex);
-			return null;
-			// TODO: handle exception
-		}
-		
-	}
+	//crear conexiones
+			public Connection crearConexion() {
+				
+				try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					conexion = DriverManager.getConnection("jdbc:mysql://" + ip2 + ":3306/"+ bd +"?useTimezone=true&serverTimezone=UTC", user, password);
+					System.out.println("Conexion establecida.");
+				
+					return conexion;
+				} catch (SQLException |ClassNotFoundException e) {
+					System.out.println("No se ha podido conectar.");
+					System.out.println(e);
+					return null;
+				}
+				
+			}
 
 }
