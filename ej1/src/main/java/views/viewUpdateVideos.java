@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 public class viewUpdateVideos extends JFrame {
 
@@ -16,6 +17,7 @@ public class viewUpdateVideos extends JFrame {
 	public JTextField tfTitle = new JTextField();
 	public JTextField tfDirector = new JTextField();
 	public JTextField tfClientId = new JTextField();
+	public JButton btnEnviar = new JButton("Enviar");
 
 	/**
 	 * Create the frame.
@@ -66,6 +68,10 @@ public class viewUpdateVideos extends JFrame {
 		tfVideoId.setColumns(10);
 		tfVideoId.setBounds(84, 33, 86, 20);
 		contentPane.add(tfVideoId);
+		
+		
+		btnEnviar.setBounds(85, 191, 85, 21);
+		contentPane.add(btnEnviar);
 	}
 
 }

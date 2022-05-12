@@ -16,6 +16,7 @@ public class viewCreateVideos extends JFrame {
 	public JTextField tfTitle = new JTextField();
 	public JTextField tfDirector = new JTextField();
 	public JTextField tfClientId = new JTextField();
+	public JButton btnEnviar = new JButton("Enviar");
 
 	/**
 	 * Create the frame.
@@ -59,7 +60,7 @@ public class viewCreateVideos extends JFrame {
 		tfClientId.setBounds(94, 120, 86, 20);
 		contentPane.add(tfClientId);
 		
-		JButton btnEnviar = new JButton("Enviar");
+		
 		btnEnviar.setBounds(94, 159, 85, 21);
 		contentPane.add(btnEnviar);
 	}
