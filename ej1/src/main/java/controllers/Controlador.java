@@ -46,12 +46,30 @@ public class Controlador implements ActionListener {
 		this.viewUpdateVideos1 = viewUpdateVideos1;
 		this.clienteModel = clienteModel;
 		this.videoModel = videoModel;
+		
+		// Botones viewMain
+		this.viewMain1.btnCrearCliente.addActionListener(this);
+		this.viewCreateClient1.btnEnviar.addActionListener(this);
+		
+		
 		viewMain1.setVisible(true);
 	}
 
 
 
 	public void actionPerformed(ActionEvent evento) {
+		//Boton CrearCliente de ViewMain
+		if(evento.getSource()== this.viewMain1.btnCrearCliente) {
+			viewCreateClient1.setVisible(true);
+			viewMain1.setVisible(false);
+		}
+		
+		if(evento.getSource()== this.viewCreateClient1.btnEnviar) {
+			System.out.println("Intentando crear Cliente");
+			clienteDto = new ClienteDto(viewCreateClient1.tfNombre.getText(), viewCreateClient1.tfApellido.getText(), viewCreateClient1.tfDireccion.getText(), viewCreateClient1.tfDni.getText(), Integer.parseInt(viewCreateClient1.tfFecha.getText()));
+			clienteModel.createInsert(clienteDto);
+			System.out.println("Cliente Creado");
+		}
 		
 	}
 

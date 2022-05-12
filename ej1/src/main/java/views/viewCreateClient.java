@@ -17,6 +17,7 @@ public class viewCreateClient extends JFrame {
 	public JTextField tfApellido = new JTextField();
 	public JTextField tfDireccion = new JTextField();
 	public JTextField tfDni = new JTextField();
+	public JTextField tfFecha = new JTextField();
 	public 	JButton btnEnviar = new JButton("Enviar");
 
 	/**
@@ -71,7 +72,16 @@ public class viewCreateClient extends JFrame {
 		contentPane.add(lblDni);
 		
 
-		btnEnviar.setBounds(125, 160, 86, 23);
+		btnEnviar.setBounds(125, 189, 86, 23);
 		contentPane.add(btnEnviar);
+		
+		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha.setBounds(20, 165, 45, 13);
+		contentPane.add(lblFecha);
+		
+		
+		tfFecha.setBounds(125, 159, 86, 19);
+		contentPane.add(tfFecha);
+		tfFecha.setColumns(10);
 	}
 }
