@@ -47,9 +47,20 @@ public class Controlador implements ActionListener {
 		this.clienteModel = clienteModel;
 		this.videoModel = videoModel;
 		
-		// Botones viewMain
+		// Con esto podremos acceder a los botones de la Vista viewMain
 		this.viewMain1.btnCrearCliente.addActionListener(this);
+		this.viewMain1.btnVerClientes.addActionListener(this);
+		this.viewMain1.btnEditarCliente.addActionListener(this);
+		this.viewMain1.btnBorrarClientes.addActionListener(this);
+		this.viewMain1.btnCrearVideos.addActionListener(this);
+		this.viewMain1.btnVerVideos.addActionListener(this);
+		this.viewMain1.btnEditarVideos.addActionListener(this);
+		this.viewMain1.btnBorrarClientes.addActionListener(this);
+		
+		// Para utilizar los botones de la vistas en actionPerformed los ponemos aqui asi
 		this.viewCreateClient1.btnEnviar.addActionListener(this);
+		this.viewTable1.btnSalir.addActionListener(this);
+		this.viewUpdateCliente1.btnEnviar.addActionListener(this);
 		
 		
 		viewMain1.setVisible(true);
