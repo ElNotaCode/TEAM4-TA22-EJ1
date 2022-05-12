@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class viewMain extends JFrame {
 	
@@ -22,11 +23,19 @@ public class viewMain extends JFrame {
 	public JButton btnBorrarVideo = new JButton("Borrar Video");
 	
 	private JPanel contentPane;
+	public final JTextField tfBorrarCliente = new JTextField();
+	public final JTextField tfBorrarVideo = new JTextField();
+	private final JLabel lblDNI = new JLabel("DNI:");
+	private final JLabel lblID = new JLabel("ID:");
 
 	/**
 	 * Create the frame.
 	 */
 	public viewMain() {
+		tfBorrarVideo.setBounds(176, 172, 96, 19);
+		tfBorrarVideo.setColumns(10);
+		tfBorrarCliente.setBounds(176, 139, 96, 19);
+		tfBorrarCliente.setColumns(10);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -63,12 +72,22 @@ public class viewMain extends JFrame {
 		contentPane.add(btnEditarVideos);
 		
 		
-		btnBorrarClientes.setBounds(20, 138, 110, 23);
+		btnBorrarClientes.setBounds(20, 137, 110, 23);
 		contentPane.add(btnBorrarClientes);
 		
 		
-		btnBorrarVideo.setBounds(140, 138, 110, 23);
+		btnBorrarVideo.setBounds(20, 170, 110, 23);
 		contentPane.add(btnBorrarVideo);
+		
+		contentPane.add(tfBorrarCliente);
+		
+		contentPane.add(tfBorrarVideo);
+		lblDNI.setBounds(150, 142, 45, 13);
+		
+		contentPane.add(lblDNI);
+		lblID.setBounds(150, 175, 45, 13);
+		
+		contentPane.add(lblID);
 	}
 
 }

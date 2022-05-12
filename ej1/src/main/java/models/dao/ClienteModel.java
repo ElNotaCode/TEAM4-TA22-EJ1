@@ -23,10 +23,10 @@ public class ClienteModel {
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 			String Query = "INSERT INTO cliente (nombre,apellido,direccion,dni,fecha)VALUES('" + cliente.getNombre() + "','"
-					+ cliente.getApellido() + "','" + cliente.getDireccion() + "'," + cliente.getDni() + ",'" + cliente.getFecha() + "'";
+					+ cliente.getApellido() + "','" + cliente.getDireccion() + "'," + cliente.getDni() + ",'" + cliente.getFecha() + "')";
 			Statement st = conexion.createStatement();
-			st.executeUpdate(Query);
 			System.out.println(Query);
+			st.executeUpdate(Query);
 			conexion.close();
 			System.out.println("Inserts  creados  con exito!");
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ public class ClienteModel {
 
 	// Mostrar solo 1
 	
-		public ClienteDto selectOne(int id) {
+		public ClienteDto selectOne(String id) {
 			ClienteDto cliente = new ClienteDto();
 
 			try {
@@ -73,7 +73,7 @@ public class ClienteModel {
 				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
-				String Query = "SELECT *  FROM cliente WHERE id ="+id+";";;
+				String Query = "SELECT *  FROM cliente WHERE dni ='"+id+"';";;
 				System.out.println(Query);
 				Statement st = conexion.createStatement();
 				java.sql.ResultSet resultSet;
@@ -158,22 +158,22 @@ public class ClienteModel {
 	
 	// Borrar solo 1
 	
-		public void deleteOne(int id) {
+		public void deleteOne(String id) {
 			try {
 				Connection conexion = connexionMSQ.crearConexion();
 				String Querydb = "USE clientevideo;";
 				Statement stdb = conexion.createStatement();
 				stdb.executeUpdate(Querydb);
-				String Query = "DELETE FROM cliente WHERE id ="+id+";";
+				String Query = "DELETE FROM cliente WHERE dni ='"+id+"';";
 				Statement st = conexion.createStatement();
-				st.executeUpdate(Query);
 				System.out.println(Querydb);
+				st.executeUpdate(Query);
 
 				conexion.close();
-				System.out.println("Inserts  creados  con exito!");
+				System.out.println("Se ha borrado el registro con exito!");
 			} catch (SQLException e) {
 				// TODO: handle exception
-				System.out.println("No se a podido crear los inserts en la tabla ");
+				System.out.println("No se a podido borrar el registro.");
 				System.out.println(e);
 			}
 		}

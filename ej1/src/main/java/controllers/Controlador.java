@@ -63,7 +63,8 @@ public class Controlador implements ActionListener {
 		this.viewUpdateCliente1.btnEnviar.addActionListener(this);
 		this.viewCreateVideos1.btnEnviar.addActionListener(this);
 		this.viewUpdateVideos1.btnEnviar.addActionListener(this);
-		
+		this.viewTable1.btnBuscarDNI.addActionListener(this);
+		this.viewTable1.btnBuscarID.addActionListener(this);
 		viewMain1.setVisible(true);
 	}
 
@@ -82,13 +83,56 @@ public class Controlador implements ActionListener {
 			viewMain1.setVisible(false);
 		}
 		
+		
 		if(evento.getSource()== this.viewMain1.btnEditarCliente) {
-			viewUpdateCliente1.setVisible(false);
+			viewUpdateCliente1.setVisible(true);
+			viewMain1.setVisible(false);
+			
+		}
+		
+		if(evento.getSource()== this.viewMain1.btnBorrarClientes) {
+			clienteModel.deleteOne(viewMain1.tfBorrarCliente.getText());
+			viewMain1.tfBorrarCliente.setText("");
+		}
+		
+		if(evento.getSource()== this.viewMain1.btnCrearVideos) {
+			viewCreateVideos1.setVisible(true);
 			viewMain1.setVisible(false);
 		}
 		
+		if(evento.getSource()== this.viewMain1.btnVerVideos) {
+			viewCreateVideos1.setVisible(true);
+			viewMain1.setVisible(false);
+		}
 		
+		if(evento.getSource()== this.viewMain1.btnEditarVideos) {
+			viewUpdateVideos1.setVisible(true);
+			viewMain1.setVisible(false);
+		}
 		
+		if(evento.getSource()== this.viewMain1.btnBorrarVideo) {
+			// de momento nada
+		}
+
+		// Botones de ViewTable
+		if (evento.getSource() == this.viewTable1.btnBuscarDNI) {
+			viewTable1.setVisible(true);
+			viewMain1.setVisible(false);
+			ClienteDto clienteDto = clienteModel.selectOne(viewTable1.tfBuscarDNI.getText());
+			String cliente = "";
+			cliente += clienteDto.getNombre();
+			cliente += clienteDto.getApellido();
+			cliente += clienteDto.getDireccion();
+			cliente += clienteDto.getDni();
+			viewTable1.table.setText(cliente);
+		}
+
+		if (evento.getSource() == this.viewTable1.btnBuscarID) {
+			viewTable1.setVisible(true);
+			viewMain1.setVisible(false);
+			VideoDto videoDto = videoModel.selectOne(Integer.parseInt(viewTable1.tfBuscarID.getText()));
+		}
+
 		// Boton de ViewCreateClient
 		if(evento.getSource()== this.viewCreateClient1.btnEnviar) {
 			System.out.println("Intentando crear Cliente");
@@ -97,7 +141,7 @@ public class Controlador implements ActionListener {
 			System.out.println("Cliente Creado");
 		}
 		
-		
+		//if(evento.getSource() == this.viewCreateClient1.btn)
 		
 	}
 
